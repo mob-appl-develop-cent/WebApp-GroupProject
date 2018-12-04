@@ -1,4 +1,9 @@
-<p>
-  patients works!
-  {{patient}}
-</p>
+<h2>{{patient.firstName}} {{patient.lastName}}</h2>
+<div><span>id: </span>{{patient.id}}</div>
+<div><span>age: </span>{{patient.age}}</div>
+
+<div>
+  <label>name:
+    <input [(ngModel)]="patient.name" placeholder="name">
+  </label>
+</div>

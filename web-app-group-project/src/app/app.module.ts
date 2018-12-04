@@ -5,11 +5,15 @@ import { AppComponent } from './app.component';
 import { PatientsComponent } from './patients/patients.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { PatientAddComponent } from './patient-add/patient-add.component';
+import { PatientDetailComponent } from './patient-detail/patient-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PatientsComponent
+    PatientsComponent,
+    PatientAddComponent,
+    PatientDetailComponent
   ],
   imports: [
     BrowserModule,

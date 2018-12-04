@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Patient } from '../model/patient'
-import { Record } from '../model/record';
+import { RestService } from '../rest.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-patients',
@@ -9,6 +10,7 @@ import { Record } from '../model/record';
 })
 export class PatientsComponent implements OnInit {
 
+  patients:any = []
   patient: Patient = {
     id: 1,
     firstName: "Michael",
@@ -28,9 +30,33 @@ export class PatientsComponent implements OnInit {
     }]
   }
 
-  constructor() { }
+  constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.getPatients();
+  }
+
+  getPatients() {
+    this.patients = [];
+    this.rest.getPatients().subscribe((data: {}) => {
+      console.log(data['5c05e38cd970640f34fd9a88']);
+      
+      this.patients[0] = data['5c05e38cd970640f34fd9a88'];
+    });
+  }
+
+  add() {
+    this.router.navigate(['/patient-add']);
+  }
+
+  delete(id) {
+    this.rest.deletePatient(id)
+      .subscribe(res => {
+          this.getPatients();
+        }, (err) => {
+          console.log(err);
+        }
+      );
   }
 
 }

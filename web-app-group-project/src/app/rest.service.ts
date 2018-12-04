@@ -19,6 +19,7 @@ export class RestService {
 
   private extractData(res: Response) {
     let body = res;
+    console.log(body)
     return body || { };
   }
 

@@ -1,9 +1,17 @@
-<h2>{{patient.firstName}} {{patient.lastName}}</h2>
-<div><span>id: </span>{{patient.id}}</div>
-<div><span>age: </span>{{patient.age}}</div>
+<h2>Patient List</h2>
 
 <div>
-  <label>name:
-    <input [(ngModel)]="patient.name" placeholder="name">
-  </label>
+  <button (click)="add()">
+    Add
+  </button>
 </div>
+
+<ul class="patients">
+  <li *ngFor="let p of patients; let i=index;">
+    <a routerLink="/patient-details/{{p._id}}">
+      <span class="badge">{{i+1}}</span> {{p.first_name}}
+    </a>
+    <button class="delete" title="delete patient"
+      (click)="delete(p._id)">x</button>
+  </li>
+</ul>
